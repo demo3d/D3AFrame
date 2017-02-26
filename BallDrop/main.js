@@ -4,7 +4,7 @@ const scene = d3.select('body').append('a-scene')
   .attr('physics', 'debug: true');
 
 const floor = scene.append('a-plane')
-  .attr('rotation', '-90 0 0')
+  .attr('rotation', '-90 5 -5')
   .attr('position', '0 0 -15') 
   .attr('width', 15)
   .attr('height', 15)
