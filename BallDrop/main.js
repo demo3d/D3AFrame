@@ -9,10 +9,11 @@ const floor = scene.append('a-plane')
   .attr('width', 15)
   .attr('height', 15)
   .attr('color', 'blue')
-  .attr('static-body', true);
+  .attr('static-body', '')
+  .attr('wireframe', false);
 
 const ball = scene.append('a-sphere')
   .attr('position', '0 5 -15')
   .attr('color', 'red')
   .attr('wireframe', true)
-  .attr('dynamic-body', 'true');
+  .attr('dynamic-body', '');
