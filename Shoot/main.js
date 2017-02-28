@@ -4,35 +4,70 @@ const scene = d3.select('body').append('a-scene');
 //  .attr('physics', 'debug: true');
 scene.append('a-sky').attr('color', 'black');
 
-function _floor(parent) {
-  return parent.append('a-plane')
-    .attr('rotation', '-85 0 0')
+const floor = scene.append('a-box')
+    .attr('rotation', '-90 0 0')
     .attr('position', '0 0 -15') 
     .attr('width', 15)
-    .attr('height', 35)
+    .attr('height', 30)
+    .attr('depth', 1)
     .attr('color', 'yellow')
     .attr('static-body', '');
-}
 
-function _guard(parent) {
-  return parent.append('a-box')
-    .attr('position', '0 -1 0') 
+const ceiling = scene.append('a-box')
+    .attr('rotation', '-90 0 0')
+    .attr('position', '0 30 -15') 
     .attr('width', 15)
-    .attr('height', 1)
-    .attr('depth', 0.1)
-    .attr('color', 'blue')
+    .attr('height', 30)
+    .attr('depth', 1)
+    .attr('color', 'yellow')
     .attr('static-body', '');
-}
 
-function _board(parent) {
-  return parent.append('a-plane')
+const back = scene.append('a-box')
+  .attr('position', '0 15 -30')
+  .attr('width', 15)
+  .attr('height', 30)
+  .attr('depth', 1)
+  .attr('color', 'green')
+  .attr('opacity', 0.2)
+  .attr('static-body', '');
+
+const left = scene.append('a-box')
+  .attr('rotation', '0 90 0')
+  .attr('position', '-7.5 15 -15')
+  .attr('width', 30)
+  .attr('height', 30)
+  .attr('depth', 1)
+  .attr('color', 'red')
+  .attr('opacity', 0.2)
+  .attr('static-body', '');
+
+const right = scene.append('a-box')
+  .attr('rotation', '0 90 0')
+  .attr('position', '7.5 15 -15')
+  .attr('width', 30)
+  .attr('height', 30)
+  .attr('depth', 1)
+  .attr('color', 'blue')
+  .attr('opacity', 0.2)
+  .attr('static-body', '');
+
+const front = scene.append('a-box')
+  .attr('position', '0 15 0')
+  .attr('width', 15)
+  .attr('height', 30)
+  .attr('depth', 1)
+  .attr('color', 'brown')
+  .attr('opacity', 0.2)
+  .attr('static-body', '');
+
+const board = scene.append('a-box')
   .attr('rotation', '0 0 0')
   .attr('position', '0 10 -15') 
   .attr('width', 5)
-  .attr('height', 5)
+  .attr('height', 4)
+  .attr('depth', 0.1)
   .attr('color', 'white')
   .attr('static-body', '');
-}
 
 function _ball(parent) {
   return parent.append('a-sphere')
@@ -44,26 +79,20 @@ function _ball(parent) {
     .attr('dynamic-body', '');
 }
 
-const x = d3.randomUniform(1)();
-const y = 20 + d3.randomUniform(1)();
-const z = -5 + d3.randomUniform(1)();
-
-const floor = _floor(scene);
-
-const guard = _guard(scene);
-
-const board = _board(scene);
 const ball = _ball(scene);
 
 function shoot(ball) {
-  const f = new CANNON.Vec3(0, 75, -50)
+  const x = 100 * d3.randomUniform(1)();
+  const y = 100 * d3.randomUniform(1)();
+  const z = 100 * d3.randomUniform(1)();
+
+  const f = new CANNON.Vec3(x, y, z)
   const p = new CANNON.Vec3().copy(ball.attr('position'))
   ball.node().body.applyImpulse(f, p)
 }
 
-scene.on('touchend', function () { console.log('shoot'); shoot(ball); });
+scene.on('mouseup', function () { console.log('shoot'); shoot(ball); });
 
 const camera = scene.append('a-camera');
-camera.attr('position', '0 0 2')
-
+camera.attr('position', '0 0 3')
 
