@@ -11,4 +11,5 @@
 - [BallDrop](https://ontouchstart.github.io/D3AFrame/BallDrop/)
 - [BallDropBox](https://ontouchstart.github.io/D3AFrame/BallDropBox/)
 - [UtahTeapot](https://ontouchstart.github.io/D3AFrame/UtahTeapot/)
+- [ShootTarget](https://ontouchstart.github.io/D3AFrame/ShootTarget/)
 
